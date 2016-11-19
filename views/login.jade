@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title Resumeon - key to customized resume
+    // Latest compiled and minified CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    // Optional theme
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    style.
+      body  {
+      background-image: url("images/register.jpg");
+      background-origin: padding-box;
+      background-size:cover;
+      }
+      .centered {
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      color: white;
+      }
+  body
+  block content
+  .container
+  .centered
+      h1 Login to ResumEON
+      p.lead Almost there. Enter your details!
+      br
+      form(role='form', action="/login",method="post", style='max-width: 300px;')
+        .form-group
+            input.form-control(type='text', name="username", placeholder='Username')
+        .form-group
+          input.form-control(type='password', name="password", placeholder='Password')
+        button.btn.btn-success(type='submit') Submit
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        a(href='/')
+          button.btn.btn-danger(type="button") Cancel

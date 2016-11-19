@@ -1,0 +1,163 @@
+doctype html
+html
+  head
+    title Resumeon - key to customized resume
+    meta(charset='utf-8')
+    link(rel='stylesheet', type='text/css', href='stylesheets/jquery.steps.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+    script(src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js')
+    script(src='/javascripts/jquery.steps.js')
+    script(src='/javascripts/jquery.steps.min.js')
+    style.
+      body  {
+      background-image: url("images/awesome.jpg");
+      background-origin: padding-box;
+      background-size:cover;
+      top: 50%;
+      }
+      .lead {
+      color: orange;
+      text-align: center;
+      font-weight: bold;
+      }
+      h1 {
+      color: orange;
+      text-align: center;
+      font-weight: bold;
+      }
+      section {
+      overflow: auto;
+      }
+
+      .css_blink {
+      -webkit-animation-name: blinker;
+      -webkit-animation-duration: 3s;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-iteration-count: infinite;
+      -moz-animation-name: blinker;
+      -moz-animation-duration: 3s;
+      -moz-animation-timing-function: linear;
+      -moz-animation-iteration-count: infinite;
+      animation-name: blinker;
+      animation-duration: 3s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      }
+      @-moz-keyframes blinker {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0; }
+      }
+      @-webkit-keyframes blinker {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0; }
+      }
+      @keyframes blinker {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0;}
+      }
+
+  body
+    h1 Resume creation
+    p.lead Fill in all the details!
+    form#example-form(action='#')
+      div
+        h3 Contact Information
+        section
+          form(class="pure-form", role='form', action="/construct",method="post")
+          if(user)
+            .form-group
+              input.form-control(type='text', name="cname", value="#{user.username}", style="width: 250px;", required)
+            .form-group
+              input.form-control(type='text', name="caddress", placeholder='Address', style="width: 250px;", required)
+            .form-group
+              input.form-control(type='text', name="ccity", placeholder='City', style="width: 250px;", required)
+            .form-group
+              input.form-control(type='text', name="cstate", placeholder='State', style="width: 250px;", required)
+            .form-group
+              input.form-control(type='number', name="czip", placeholder='Zip code', style="width: 250px;", required)
+            .form-group
+              input.form-control(type='text', name="ccountry", placeholder='Country', style="width: 250px;", required)
+            .form-group
+              input.form-control(type='email', name="cemail",  value="#{user.email}", style="width: 250px;", required)
+            .form-group
+              input.form-control(type='number', name="cphone",  placeholder='Phone number', style="width: 250px;", required)
+            .form-group
+              label UserID:
+              input.form-control(type='number', name="caccountId", value="#{user.accountId}", style="width: 100px;", required)
+
+            p
+              span.css_blink Save page before proceeding to next page
+
+            button.btn.btn-success(type='submit', class="pure-button pure-button-primary") Save & Next
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            a(href='/')
+              button.btn.btn-danger(type="button") Cancel
+
+        h3 Objective
+        section
+          form(class="pure-form", role='form', action="/construct",method="post")
+            if(user)
+            button#objective Add Objective
+            #obj
+
+        h3 Hints
+        section
+          ul
+            li Foo
+            li Bar
+            li Foobar
+        h3 Finish
+        section
+          input#acceptTerms.required(name='acceptTerms', type='checkbox')
+          label(for='acceptTerms') I agree with the Terms and Conditions.
+    script.
+      var form = $("#example-form");
+      form.validate({
+      errorPlacement: function errorPlacement(error, element) { element.before(error); },
+      rules: {
+      confirm: {
+      equalTo: "#password"
+      }
+      }
+      });
+      form.children("div").steps({
+      headerTag: "h3",
+      bodyTag: "section",
+      transitionEffect: "slideLeft",
+      stepsOrientation: "vertical",
+      onStepChanging: function (event, currentIndex, newIndex)
+      {
+      form.validate().settings.ignore = ":disabled,:hidden";
+      return form.valid();
+      },
+      onFinishing: function (event, currentIndex)
+      {
+      form.validate().settings.ignore = ":disabled";
+      return form.valid();
+      },
+      onFinished: function (event, currentIndex)
+      {
+      alert("Submitted!");
+      }
+      });
+      document.getElementById("objective").addEventListener("click", function() {
+      var obj1 = document.createElement("obj");
+      obj1.type = "text";
+      obj1.placeholder = "Objective title";
+      obj1.name = "otitle";
+
+      var obj2 = document.createElement("obj");
+      obj2.type = "text";
+      obj2.placeholder = "Objective description";
+      obj2.name = "odescription";
+
+      var obj3 = document.createElement("obj");
+      obj3.type = "text";
+      obj3.value = "#user.accountId";
+      obj3.name = "oaccountId";
+      });
