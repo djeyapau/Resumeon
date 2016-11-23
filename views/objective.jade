@@ -1,0 +1,96 @@
+doctype html
+html
+  head
+    title Resumeon - key to customized resume
+    meta(charset='utf-8')
+    link(rel='stylesheet', type='text/css', href='stylesheets/jquery.steps.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+    script(src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js')
+    script(src='/javascripts/jquery.steps.js')
+    script(src='/javascripts/jquery.steps.min.js')
+    style.
+      body  {
+      background-image: url("images/awesome.jpg");
+      background-origin: padding-box;
+      background-size:cover;
+      color: orange;
+      margin-left: 10%;
+      }
+      .lead {
+      color: orange;
+      text-align: center;
+      font-weight: bold;
+      }
+      h1 {
+      color: orange;
+      text-align: center;
+      font-weight: bold;
+      }
+      section {
+      overflow: auto;
+      }
+
+      .css_blink {
+      -webkit-animation-name: blinker;
+      -webkit-animation-duration: 3s;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-iteration-count: infinite;
+      -moz-animation-name: blinker;
+      -moz-animation-duration: 3s;
+      -moz-animation-timing-function: linear;
+      -moz-animation-iteration-count: infinite;
+      animation-name: blinker;
+      animation-duration: 3s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      }
+      @-moz-keyframes blinker {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0; }
+      }
+      @-webkit-keyframes blinker {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0; }
+      }
+      @keyframes blinker {
+      0% { opacity: 1.0; }
+      50% { opacity: 0.0; }
+      100% { opacity: 1.0;}
+      }
+
+  body
+    h1 Resume creation - part 2
+    p.lead Objective:
+    form(class="pure-form", role='form', action="/objective",method="post")
+      .form-group
+        label UserID:
+        input.form-control(type='number', name="oaccountId", value="#{user.accountId}", style="width: 50px;", readonly, required)
+      br
+      #container
+      br
+      button#btn1(type='button', onclick='addObjective(); return false;') Add Objective
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      button.btn.btn-success(type='submit', class="pure-button pure-button-primary", return false) Save
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      a(href='/education')
+        button.btn2.btn-primary(type="button") Next part
+    
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+    script(src='https://code.jquery.com/jquery-2.2.0.min.js')
+    script.
+      function addObjective(){
+      var description = document.createElement("textarea");
+      description.rows = "2";
+      description.cols = "100";
+      description.required = "true";
+      description.name = "username";
+      description.placeholder = "Description";
+      container.appendChild(description);
+      container.appendChild(document.createElement("br"));
+      container.appendChild(document.createElement("br"));
+      btn1.style.display = "none";
+      }

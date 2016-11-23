@@ -10,11 +10,11 @@ autoIncrement.initialize(connection);
 var Account = new Schema({
     username: String,
     password: String,
-	email: String,
+	name: String,
 	gender: String,
 	birthday: Date
 });
 
 Account.plugin(passportLocalMongoose);
 Account.plugin(autoIncrement.plugin, { model: 'Account', field: 'accountId' });
-module.exports = mongoose.model('Account', Account);
+module.exports = mongoose.model('Accounts', Account);

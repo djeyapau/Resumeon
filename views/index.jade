@@ -31,25 +31,26 @@ html
             img(alt='Logo', src='/images/logo.png')
         .container
           b
-            p.navbar-text
-              a.navbar-link(href='#') About me
             if (!user)
               p.navbar-text.navbar-right
-               a.navbar-link(href='/register') Not a user? Register
+                a.navbar-link(href='/register') Not a user? Register
               p.navbar-text.navbar-right
-               a.navbar-link(href='/login') Login
+                a.navbar-link(href='/login') Login
             if (user)
               p.navbar-text.navbar-right 
-                You You are currently logged in as #{user.username}
+                You You are currently logged in as #{user.name}
               p.navbar-text.navbar-right
-               a(href="/logout") Logout
+                a(href="/logout") Logout
+              p.navbar-text.navbar
+                a.navbar-link(href='profile') #{user.name}
+
 
     .centered
             img.img-responsive.center-block(src="images/title.png")
 
     .start
             if (user)
-              a(href="/construct")
+              a(href="/contact")
                 img(src="images/go.png")
 
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')

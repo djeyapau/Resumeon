@@ -10,6 +10,8 @@ html
     script(src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js')
     script(src='/javascripts/jquery.steps.js')
     script(src='/javascripts/jquery.steps.min.js')
+    script(src='/javascripts/notify.js')
+    script(src='/javascripts/notify.min.js')
     style.
       body  {
       background-image: url("images/awesome.jpg");
@@ -64,14 +66,12 @@ html
   body
     h1 Resume creation
     p.lead Fill in all the details!
-    form#example-form(action='#')
-      div
+      #example-basic
         h3 Contact Information
         section
-          form(class="pure-form", role='form', action="/construct",method="post")
-          if(user)
+          form(class="pure-form", role='form', action="/construct",method="post", return false;)
             .form-group
-              input.form-control(type='text', name="cname", value="#{user.username}", style="width: 250px;", required)
+              input.form-control(type='text', name="cname", placeholder='Name', style="width: 250px;", required)
             .form-group
               input.form-control(type='text', name="caddress", placeholder='Address', style="width: 250px;", required)
             .form-group
@@ -83,15 +83,15 @@ html
             .form-group
               input.form-control(type='text', name="ccountry", placeholder='Country', style="width: 250px;", required)
             .form-group
-              input.form-control(type='email', name="cemail",  value="#{user.email}", style="width: 250px;", required)
+              input.form-control(type='email', name="cemail",  placeholder='Email', style="width: 250px;", required)
             .form-group
               input.form-control(type='number', name="cphone",  placeholder='Phone number', style="width: 250px;", required)
             .form-group
               label UserID:
-              input.form-control(type='number', name="caccountId", value="#{user.accountId}", style="width: 100px;", required)
+              input.form-control(type='number', name="caccountId", value="0", style="width: 100px;", required)
 
             p
-              span.css_blink Save page before proceeding to next page
+              span.css_blink Save once page before proceeding to next page
 
             button.btn.btn-success(type='submit', class="pure-button pure-button-primary") Save & Next
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -117,14 +117,6 @@ html
           label(for='acceptTerms') I agree with the Terms and Conditions.
     script.
       var form = $("#example-form");
-      form.validate({
-      errorPlacement: function errorPlacement(error, element) { element.before(error); },
-      rules: {
-      confirm: {
-      equalTo: "#password"
-      }
-      }
-      });
       form.children("div").steps({
       headerTag: "h3",
       bodyTag: "section",

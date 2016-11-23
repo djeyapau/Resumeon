@@ -8,8 +8,7 @@ var connection = mongoose.createConnection("mongodb://localhost/resume");
 autoIncrement.initialize(connection);
 
 var Objective = new Schema({
-    otitle: String,
-	odescription: String,
+	username: String,
 	oaccountId: Number
 });
 
