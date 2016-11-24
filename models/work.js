@@ -8,16 +8,10 @@ var connection = mongoose.createConnection("mongodb://localhost/resume");
 autoIncrement.initialize(connection);
 
 var Work = new Schema({
-    wempname: String,
-	wcity: String,
+    username: String,
 	wcountry: String,
-	wstate: String,
 	wproject: String,
 	wposition: String,
-	wstart: Date,
-	wend: Date,
-	wresponsibility: String,
-	wtype: String
 });
 
 Work.plugin(passportLocalMongoose);

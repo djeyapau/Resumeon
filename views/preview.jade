@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    title Jade
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js')
+  body
+    h1 Jade - node template engine
+    #container.col
+      p You are amazing
+      p
+        | Jade is a terse and simple
+        | templating language with a
+        | strong focus on performance
+        | and powerful features.
+    script.
+      var doc = new jsPDF()
+      doc.text(20, 20, 'RESUME');
+      doc.text(20, 30, '#{user.username}');
+      doc.text(20, 40, '#{user.name}');
+      doc.text(20, 50, '#{user.gender}');
+      doc.text(20, 60, '#{user.birthday}');
+      doc.output('datauri');

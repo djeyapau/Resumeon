@@ -8,12 +8,8 @@ var connection = mongoose.createConnection("mongodb://localhost/resume");
 autoIncrement.initialize(connection);
 
 var Education = new Schema({
-    eschool: String,
-	ecity: String,
-	estate: String,
+    username: String,
 	ecountry: String,
-	estart: Date,
-	eend: Date,
 	eachievements: String
 });
 

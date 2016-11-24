@@ -67,6 +67,8 @@ router.post('/adduser', function(req, res) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
 router.get('/', function (req, res) {
 	res.render('index', {
 		user: req.user
@@ -92,6 +94,54 @@ router.get('/objective', function (req, res) {
 router.get('/education', function (req, res) {
 	res.render('education', {
 		user: req.user
+	});
+});
+
+router.post('/education', function (req, res) {
+	new Education({
+		username: req.body.username,
+		eschool: req.body.eschool,
+		ecountry: req.body.ecountry,
+		eachievements: req.body.eachievements,
+		eaccountId: req.body.eaccountId
+	}).save(function (err, ouser) {
+		if (err) {
+			console.log("ERR0R - education!!!");
+			console.log(err);
+		} else {
+		console.log("Education saved");	
+		res.redirect('/education');
+		}
+	});
+});
+
+router.get('/work', function (req, res) {
+	res.render('work', {
+		user: req.user
+	});
+});
+
+router.get('/preview', function (req, res) {
+	res.render('preview', {
+		user: req.user
+	});
+});
+
+router.post('/work', function (req, res) {
+	new Work({
+		username: req.body.username,
+		wcountry: req.body.wcountry,
+		wproject: req.body.wproject,
+		wposition: req.body.wposition,
+		waccountId: req.body.waccountId
+	}).save(function (err, ouser) {
+		if (err) {
+			console.log("ERR0R - work!!!");
+			console.log(err);
+		} else {
+		console.log("Work saved");	
+		res.redirect('/work');
+		}
 	});
 });
 

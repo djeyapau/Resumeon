@@ -63,49 +63,57 @@ html
       }
 
   body
-    h1 Resume creation - part 3
-    p.lead Education:
-    form(class="pure-form", role='form', action="/education",method="post")
+    h1 Resume creation - part 4
+    p.lead Work:
+    form(class="pure-form", role='form', action="/work",method="post")
       .form-group
         label UserID:
-        input.form-control(type='number', name="eaccountId", value="#{user.accountId}", style="width: 50px;", readonly, required)
+        input.form-control(type='number', name="waccountId", value="#{user.accountId}", style="width: 50px;", readonly, required)
       br
       #container
       br
-      button#btn1(type='button', onclick='addObjective(); return false;') Add Education
+      button#btn1(type='button', onclick='addObjective(); return false;') Add Work
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       button.btn.btn-success(type='submit', class="pure-button pure-button-primary", return false) Save
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      a(href='/work')
-        button.btn2.btn-primary(type="button") Next part
+      a(href='/preview')
+        button.btn2.btn-primary(type="button") Preview data
     
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
     script(src='https://code.jquery.com/jquery-2.2.0.min.js')
     script.
       function addObjective(){
       var school = document.createElement("INPUT");
-      school.placeholder = "School";
+      school.placeholder = "Company";
       school.setAttribute("type","text");
       school.required = "true";
       school.name = "username";
       var country = document.createElement("INPUT");
       country.setAttribute("type","text");
       country.required = "true";
-      country.name = "ecountry";
+      country.name = "wcountry";
       country.placeholder = "Country";
-      var ac = document.createElement("Textarea");
-      ac.rows = "1";
-      ac.cols = "100";
-      ac.required = "true";
-      ac.name = "eachievements";
-      ac.placeholder = "Achievements";
+      var project = document.createElement("INPUT");
+      project.setAttribute("type","text");
+      project.required = "true";
+      project.name = "wproject";
+      project.placeholder = "Project";
+      var position = document.createElement("INPUT");
+      position.setAttribute("type","text");
+      position.required = "true";
+      position.name = "wposition";
+      position.placeholder = "Position";
+
       container.appendChild(school);
       container.appendChild(document.createElement("br"));
       container.appendChild(document.createElement("br"));
       container.appendChild(country);
       container.appendChild(document.createElement("br"));
       container.appendChild(document.createElement("br"));
-      container.appendChild(ac);
+      container.appendChild(project);
+      container.appendChild(document.createElement("br"));
+      container.appendChild(document.createElement("br"));
+      container.appendChild(position);
       container.appendChild(document.createElement("br"));
       container.appendChild(document.createElement("br"));
       btn1.style.display = "none";
